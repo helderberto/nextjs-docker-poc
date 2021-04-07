@@ -5,14 +5,13 @@ FROM node:alpine
 WORKDIR /app
 
 # Copying package.json, package-lock.json or yarn.lock
-COPY package*.json .
-COPY yarn.lock .
+COPY package*.json yarn.lock .
 
 # Installing dependencies
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Copying source files
-COPY . /app
+COPY . .
 
 # Building app
 RUN yarn build
