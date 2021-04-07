@@ -13,7 +13,7 @@ A simple proof of concept with NextJS + Docker.
 Run the dockerized project:
 
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 # or
 docker-compose up
 ```
