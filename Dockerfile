@@ -1,22 +1,26 @@
-# Alpine Linux is much smaller than most distribution base images
+# Use node alpine as it's a small node image
 FROM node:alpine
 
-# Creating and setting app directory
+# Create the directory on the node image
+# where our Next.js app will live
+RUN mkdir -p /app
+
+# Set /app as the working directory
 WORKDIR /app
 
 # Copying package.json, package-lock.json or yarn.lock
 COPY package*.json yarn.lock .
 
-# Installing dependencies
+# Install dependencies in /app
 RUN yarn install --frozen-lockfile
 
-# Copying source files
-COPY . .
+# Copy the rest of our Next.js folder into /app
+COPY . /app
 
 # Building app
 RUN yarn build
 
-# Expose port 3000
+# Ensure port 3000 is accessible to our system
 EXPOSE 3000
 
 # Running the app, when deploying don't forget to change to 'start'
